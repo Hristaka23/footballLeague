@@ -1,18 +1,12 @@
 import {useState, useEffect} from "react";
 import {
-    Flex,
-    Group,
-    Text,
-    Image,
-    Avatar,
     Table,
-    ActionIcon,
-    Menu,
-    rem,
+    SimpleGrid,
+    Text,
 } from "@mantine/core";
 
 import supabase from "../utils/supabase";
-import styles from "../assets/css/GameInfo.module.css";
+//import styles from "../assets/css/GameInfo.module.css";
 import {Teams, Schedule} from "../types";
 
 interface Props {
@@ -31,36 +25,38 @@ function GameInfo({date}: Props) {
     };
 
     const getSchedule = async () => {
-        // const { data, error } = await supabase
-        //   .from("games_schedule")
-        //   .select("*, teams!inner(name)")
-        //   .eq("date", formatDate(date));
 
-        const { data, error } = await supabase
-            .from('game_schedule')
+        const {data, error} = await supabase
+            .from('games_schedule')
             .select(`
-      id, 
-      name, 
-      id_team1,
-      id_team2, 
-      teams (id, name)
-    `)
-            .eq("date", formatDate(date));
+      id_game,
+      status,
+      time,
+      team1_score,
+      team2_score,
+      team1: teams!id_team1 (id, name), 
+      team2: teams!id_team2 (id, name)
+    `).eq("date", formatDate(date));
 
-        setSchedules(data ?? []);
+        if (error) {
+            console.error("Error fetching games:", error);
+        } else {
+            console.log(schedules);
+            setSchedules(data ?? []);
+        }
     };
     // const getTeams = async () => {
     //   const { data, error } = await supabase.from("teams").select("*");
-
+    //
     //   if (error) {
     //     console.error("Error fetching teams:", error.message);
     //   } else {
     //     setTeams(data ?? []);
     //   }
     // };
-     console.log(schedules);
+
     useEffect(() => {
-        // getTeams();
+        //getTeams();
         getSchedule();
     }, [date]);
 
@@ -68,7 +64,7 @@ function GameInfo({date}: Props) {
     //   return (
     //     <Table.Tr key={team.id}>
     //       <Table.Td>{team.name}</Table.Td>
-
+    //
     //       <Table.Td>{team.id}</Table.Td>
     //     </Table.Tr>
     //   );
@@ -77,22 +73,44 @@ function GameInfo({date}: Props) {
         console.log(schedule);
         return (
             <Table.Tr key={schedule.id_game}>
-                <Table.Td>{schedule.id_game}</Table.Td>
-                <Table.Td>{schedule.date}</Table.Td>
-                <Table.Td>{schedule.time}</Table.Td>
+                <Table.Td>
+                    <SimpleGrid cols={1} spacing="xs" verticalSpacing="xs">
+                        <div><Text fw={700}> {schedule.team1?.name}</Text></div>
+                        <div><Text fw={700}>{schedule.team2?.name}</Text></div>
+                    </SimpleGrid>
+
+                </Table.Td>
+                <Table.Td>
+
+                </Table.Td>
+                <Table.Td>
+                    {schedule.status !== "Scheduled" ? (
+                        <SimpleGrid>
+                            <div>
+                                <Text fw={700} ta="center">{schedule.team1_score}</Text>
+                            </div>
+                            <div>
+                                <Text fw={700} ta="center">{schedule.team2_score}</Text>
+                            </div>
+                        </SimpleGrid>
+                        ) : (
+                        <SimpleGrid>
+                            <div>
+                                <Text fw={700} ta="center">{schedule.time}</Text>
+                            </div>
+
+                        </SimpleGrid>
+                    )}
+                </Table.Td>
             </Table.Tr>
+
         );
     });
     return (
         <>
-            <Table verticalSpacing="md">
-                <Table.Thead>
-                    <Table.Tr>
-                        <Table.Th>Element position</Table.Th>
-                        <Table.Th>Element name</Table.Th>
-                        <Table.Th>Symbol</Table.Th>
-                    </Table.Tr>
-                </Table.Thead>
+            <Table verticalSpacing="xl">
+                {/*<Table.Thead>*/}
+                {/*</Table.Thead>*/}
 
                 <Table.Tbody>{rowsSchedule}</Table.Tbody>
             </Table>

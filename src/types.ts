@@ -19,5 +19,7 @@ export type Teams = {
     team1_score: number;
     team2_score: number;
     time:string;
+    team1?: Teams;
+    team2?: Teams;
 
   }
