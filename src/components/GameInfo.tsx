@@ -102,17 +102,19 @@ function GameInfo({date}: Props) {
                         </SimpleGrid>
                     )}
                 </Table.Td>
+
             </Table.Tr>
+
 
         );
     });
     return (
         <>
             <Table verticalSpacing="xl">
-                {/*<Table.Thead>*/}
-                {/*</Table.Thead>*/}
-
                 <Table.Tbody>{rowsSchedule}</Table.Tbody>
+                <Table.Th>
+                    Standings
+                </Table.Th>
             </Table>
         </>
     );
