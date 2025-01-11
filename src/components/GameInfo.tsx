@@ -7,7 +7,7 @@ import {
 
 import supabase from "../utils/supabase";
 //import styles from "../assets/css/GameInfo.module.css";
-import {Teams, Schedule} from "../types";
+import {Schedule} from "../types";
 
 interface Props {
     date: Date | null;
@@ -30,19 +30,22 @@ function GameInfo({date}: Props) {
             .from('games_schedule')
             .select(`
       id_game,
+      date,
+      id_team1,
+      id_team2,
       status,
       time,
       team1_score,
       team2_score,
       team1: teams!id_team1 (id, name), 
       team2: teams!id_team2 (id, name)
-    `).eq("date", formatDate(date));
+    `).eq("date", formatDate(date)) ;
 
         if (error) {
             console.error("Error fetching games:", error);
         } else {
             console.log(schedules);
-            setSchedules(data ?? []);
+            setSchedules((data ?? []) as unknown as Schedule[]);
         }
     };
     // const getTeams = async () => {
