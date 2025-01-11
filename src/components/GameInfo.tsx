@@ -45,7 +45,7 @@ function GameInfo({date}: Props) {
         if (error) {
             console.error("Error fetching games:", error);
         } else {
-            console.log(schedules);
+            // console.log(schedules);
             setSchedules((data ?? []) as unknown as Schedule[]);
         }
     };
@@ -74,7 +74,7 @@ function GameInfo({date}: Props) {
     //   );
     // });
     const rowsSchedule = schedules.map((schedule) => {
-        console.log(schedule);
+        // console.log(schedule);
         return (
             <Table.Tr key={schedule.id_game}>
                 <Table.Td>
@@ -117,7 +117,10 @@ function GameInfo({date}: Props) {
             <Table verticalSpacing="xl">
                 <Table.Tbody>{rowsSchedule}</Table.Tbody>
                 <Table.Th>
-                    Standings
+                    Честит Рожден Ден Криска!
+                    Бъди жив и здрав, много щастлив и бъди все така целеустремен
+                    и добър човек! А да, и много победи в лигата този сезон
+                    (може да добавя някоя друга победа на ваша сметка хахха)!
                 </Table.Th>
             </Table>
         </>
