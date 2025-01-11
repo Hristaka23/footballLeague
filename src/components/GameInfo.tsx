@@ -40,7 +40,7 @@ function GameInfo({date}: Props) {
       team2_score,
       team1: teams!id_team1 (id, name), 
       team2: teams!id_team2 (id, name)
-    `).eq("date", formatDate(date)) ;
+    `).eq("date", formatDate(date));
 
         if (error) {
             console.error("Error fetching games:", error);
@@ -97,7 +97,7 @@ function GameInfo({date}: Props) {
                                 <Text fw={700} ta="center">{schedule.team2_score}</Text>
                             </div>
                         </SimpleGrid>
-                        ) : (
+                    ) : (
                         <SimpleGrid>
                             <div>
                                 <Text fw={700} ta="center">{schedule.time}</Text>
@@ -117,10 +117,7 @@ function GameInfo({date}: Props) {
             <Table verticalSpacing="xl">
                 <Table.Tbody>{rowsSchedule}</Table.Tbody>
                 <Table.Th>
-                    Честит Рожден Ден Криска!
-                    Бъди жив и здрав, много щастлив и бъди все така целеустремен
-                    и добър човек! А да, и много победи в лигата този сезон
-                    (може да добавя някоя друга победа на ваша сметка хахха)!
+                    standing
                 </Table.Th>
             </Table>
         </>

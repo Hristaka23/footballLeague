@@ -33,7 +33,7 @@ function DateSchedule({date, setDate}:Props) {
 
             </Text>
           </Grid.Col>
-          <Grid.Col pl="13%" pt="5%" span={3} offset={6}>
+          <Grid.Col pl="10%" pt="8%" span={3} offset={6}>
             <Modal
                 opened={opened}
                 onClose={close}
