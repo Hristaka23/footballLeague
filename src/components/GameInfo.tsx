@@ -5,6 +5,7 @@ import {
     Text,
 } from "@mantine/core";
 
+
 import supabase from "../utils/supabase";
 //import styles from "../assets/css/GameInfo.module.css";
 import {Schedule} from "../types";
