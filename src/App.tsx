@@ -4,13 +4,14 @@ import styles from '../src/assets/css/App.module.css'
 import Home from '../src/pages/Home'
 import Standings from '../src/pages/Standings'
 import {Analytics} from "@vercel/analytics/react"
+import {SpeedInsights} from "@vercel/speed-insights/react"
 
 function App() {
 
     return (
         <>
             <Analytics/>
-
+            <SpeedInsights/>
             <BrowserRouter>
                 <Routes>
                     <Route path="/" element={<Home/>}/>
