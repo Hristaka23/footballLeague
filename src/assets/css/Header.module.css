@@ -2,3 +2,7 @@
 .group{
     overflow: "hidden";
 }
+.header{
+    padding-top: env(safe-area-inset-top, 0px);
+    margin: 0;
+}

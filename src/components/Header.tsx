@@ -14,6 +14,7 @@ function Header() {
         align="center"
         direction="row"
         wrap="wrap"
+        className={styles.header}
       >
         <Group className={styles.group}>
           <Flex w={60}>
