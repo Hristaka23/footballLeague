@@ -3,9 +3,11 @@ import {
     Table,
     SimpleGrid,
     Text,
+    Image,
+    Group,
 } from "@mantine/core";
 
-
+import club1 from "../assets/images/club1.png";
 import supabase from "../utils/supabase";
 //import styles from "../assets/css/GameInfo.module.css";
 import {Schedule} from "../types";
@@ -79,8 +81,15 @@ function GameInfo({date}: Props) {
             <Table.Tr key={schedule.id_game}>
                 <Table.Td>
                     <SimpleGrid cols={1} spacing="xs" verticalSpacing="xs">
-                        <div><Text fw={700}> {schedule.team1?.name}</Text></div>
-                        <div><Text fw={700}>{schedule.team2?.name}</Text></div>
+                        <Group>
+                            <Image src={club1} width={30} height={30} radius="50%" ></Image>
+                            <Text fw={700}> {schedule.team1?.name}</Text>
+                        </Group>
+                        <Group>
+                            <Image src={club1} width={30} height={30} radius="50%" ></Image>
+                            <Text fw={700}> {schedule.team2?.name}</Text>
+                        </Group>
+
                     </SimpleGrid>
 
                 </Table.Td>
@@ -90,18 +99,18 @@ function GameInfo({date}: Props) {
                 <Table.Td>
                     {schedule.status !== "Scheduled" ? (
                         <SimpleGrid>
-                            <div>
+                            <Group justify="flex-end">
                                 <Text fw={700} ta="center">{schedule.team1_score}</Text>
-                            </div>
-                            <div>
+                            </Group>
+                            <Group justify="flex-end">
                                 <Text fw={700} ta="center">{schedule.team2_score}</Text>
-                            </div>
+                            </Group>
                         </SimpleGrid>
                     ) : (
                         <SimpleGrid>
-                            <div>
+                            <Group justify="flex-end">
                                 <Text fw={700} ta="center">{schedule.time}</Text>
-                            </div>
+                            </Group>
 
                         </SimpleGrid>
                     )}

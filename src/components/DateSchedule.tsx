@@ -53,7 +53,7 @@ function DateSchedule({date, setDate}:Props) {
                   }}
               />
             </Modal>
-            <ActionIcon variant="outline" aria-label="Calendar">
+            <ActionIcon variant="outline" aria-label="Calendar" size="lg">
               <IconCalendarMonth
                   style={{ width: "70%", height: "70%" }}
                   stroke={1.5}
