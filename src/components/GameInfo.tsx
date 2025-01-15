@@ -6,7 +6,7 @@ import {
     Image,
     Group,
 } from "@mantine/core";
-
+import {Link} from 'react-router-dom';
 import club1 from "../assets/images/club1.png";
 import supabase from "../utils/supabase";
 //import styles from "../assets/css/Standings.module.css";
@@ -109,7 +109,7 @@ function GameInfo({date}: Props) {
             <Table verticalSpacing="xl">
                 <Table.Tbody>{rowsSchedule}</Table.Tbody>
                 <Table.Th>
-                    <a href="/teams">Standing</a>
+                    <Link to="/teams">Standings</Link>
                 </Table.Th>
             </Table>
         </>
