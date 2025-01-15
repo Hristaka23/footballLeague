@@ -5,13 +5,9 @@ import DateSchedule from "../components/DateSchedule";
 import GameInfo from "../components/GameInfo";
 
 
-const PRIMARY_COL_HEIGHT = rem(300);
-
-
 function Home() {
   const [date, setDate] = useState<Date | null>(new Date());
-  console.log(date);
-  const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-md) / 2)`;
+
 
 
 
@@ -22,7 +18,6 @@ function Home() {
       <Container my="md">
         <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
           <GameInfo date={date}/>
-          {/* <Skeleton height={PRIMARY_COL_HEIGHT} radius="md" animate={false} /> */}
         </SimpleGrid>
       
       </Container>

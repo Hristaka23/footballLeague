@@ -9,6 +9,7 @@ export type Teams = {
     draws: number;
     losses: number;
     goal_difference: number;
+    group: string;
   };
   export type Schedule ={
     id_game: number;

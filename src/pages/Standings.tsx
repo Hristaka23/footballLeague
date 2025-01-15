@@ -1,31 +1,78 @@
-import { Container, Grid, SimpleGrid, Skeleton, rem } from "@mantine/core";
-import React, { useState, useEffect } from "react";
+import {useState, useEffect} from "react";
+import {
+
+    Flex,
+    SimpleGrid,
+    Text,
+    Image,
+    Group,
+} from "@mantine/core";
+
+import club1 from "../assets/images/club1.png";
+import supabase from "../utils/supabase";
+import styles from "../assets/css/Standings.module.css";
+import {Teams} from "../types";
 import Header from '../components/Header'
-import DateSchedule from "../components/DateSchedule";
-import GameInfo from "../components/GameInfo";
-
-
-const PRIMARY_COL_HEIGHT = rem(300);
-
 
 function Standings() {
-    const [date, setDate] = useState<Date | null>(new Date());
-    console.log(date);
-    const SECONDARY_COL_HEIGHT = `calc(${PRIMARY_COL_HEIGHT} / 2 - var(--mantine-spacing-md) / 2)`;
+    const [teams, setTeams] = useState<Teams[]>([]);
 
 
+    const getTeams = async () => {
+        const {data, error} = await supabase.from("teams").select("*");
 
+        if (error) {
+            console.error("Error fetching teams:", error.message);
+        } else {
+            setTeams(data ?? []);
+        }
+    };
+
+    useEffect(() => {
+        getTeams();
+
+    }, []);
+    const sortedTeams = [...teams].sort((team1, team2) => team2.points - team1.points);
+
+    const rowsTeams = sortedTeams.map((team, index) => {
+        return (
+            <>
+                <Group>
+                    <Text size="md" fw={700}> {index + 1}.</Text>
+                    <Image src={club1} width={30} height={30} radius="50%"></Image>
+                    <Text size="lg" fw={700}> {team.name}</Text>
+
+                    <Text className={styles.textMarginMP} fw={700} ta="center">{team.points}</Text>
+                </Group>
+
+            </>
+        );
+    });
     return (
         <>
             <Header/>
-            <DateSchedule date={date} setDate={setDate}/>
-            <Container my="md">
-                <SimpleGrid cols={{ base: 1, sm: 2 }} spacing="md">
-                    <GameInfo date={date}/>
-                     <Skeleton height={PRIMARY_COL_HEIGHT} radius="md" animate={false} />
-                </SimpleGrid>
+            <Group
+                justify="flex-start"
+                align="center"
+                style={{
+                    paddingLeft: "3%",
 
-            </Container>
+            }}
+            >
+                <Text fw={700} ta="center">#</Text>
+
+                <Text className={styles.textMargin} fw={700} ta="center">TEAM</Text>
+                <Text className={styles.textMarginMP} fw={700} ta="center">MP</Text>
+                <Text className={styles.textMargin} fw={700} ta="center">PTS</Text>
+            </Group>
+
+            <SimpleGrid cols={1} spacing="xs" verticalSpacing="xs"
+                        style={{
+                            marginLeft: "3%",
+                        }}
+            >
+                {rowsTeams}
+            </SimpleGrid>
 
         </>
     );

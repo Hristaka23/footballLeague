@@ -9,7 +9,7 @@ import {
 
 import club1 from "../assets/images/club1.png";
 import supabase from "../utils/supabase";
-//import styles from "../assets/css/GameInfo.module.css";
+//import styles from "../assets/css/Standings.module.css";
 import {Schedule} from "../types";
 
 interface Props {
@@ -51,32 +51,15 @@ function GameInfo({date}: Props) {
             setSchedules((data ?? []) as unknown as Schedule[]);
         }
     };
-    // const getTeams = async () => {
-    //   const { data, error } = await supabase.from("teams").select("*");
-    //
-    //   if (error) {
-    //     console.error("Error fetching teams:", error.message);
-    //   } else {
-    //     setTeams(data ?? []);
-    //   }
-    // };
+
 
     useEffect(() => {
-        //getTeams();
         getSchedule();
     }, [date]);
 
-    // const rowsTeams = teams.map((team) => {
-    //   return (
-    //     <Table.Tr key={team.id}>
-    //       <Table.Td>{team.name}</Table.Td>
-    //
-    //       <Table.Td>{team.id}</Table.Td>
-    //     </Table.Tr>
-    //   );
-    // });
+
     const rowsSchedule = schedules.map((schedule) => {
-        // console.log(schedule);
+
         return (
             <Table.Tr key={schedule.id_game}>
                 <Table.Td>
@@ -126,7 +109,7 @@ function GameInfo({date}: Props) {
             <Table verticalSpacing="xl">
                 <Table.Tbody>{rowsSchedule}</Table.Tbody>
                 <Table.Th>
-                    standing
+                    <a href="/teams">Standing</a>
                 </Table.Th>
             </Table>
         </>
