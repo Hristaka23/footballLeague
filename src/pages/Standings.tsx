@@ -1,12 +1,13 @@
 import {useState, useEffect} from "react";
 import {
-
+    Button,
     Flex,
     SimpleGrid,
     Text,
     Image,
     Group,
 } from "@mantine/core";
+import {useNavigate} from 'react-router-dom';
 
 import club1 from "../assets/images/club1.png";
 import supabase from "../utils/supabase";
@@ -16,7 +17,7 @@ import Header from '../components/Header'
 
 function Standings() {
     const [teams, setTeams] = useState<Teams[]>([]);
-
+    const navigate = useNavigate();
 
     const getTeams = async () => {
         const {data, error} = await supabase.from("teams").select("*");
@@ -42,7 +43,8 @@ function Standings() {
                     <Image src={club1} width={30} height={30} radius="50%"></Image>
                     <Text size="lg" fw={700}> {team.name}</Text>
 
-                    <Text className={styles.textMarginMP} fw={700} ta="center">{team.points}</Text>
+                    <Text fw={700} ta="center">{team.games_played}</Text>
+                    <Text fw={700} ta="center">{team.points}</Text>
                 </Group>
 
             </>
@@ -56,24 +58,24 @@ function Standings() {
                 align="center"
                 style={{
                     paddingLeft: "3%",
-
+                    paddingTop: "3%",
             }}
             >
                 <Text fw={700} ta="center">#</Text>
 
-                <Text className={styles.textMargin} fw={700} ta="center">TEAM</Text>
-                <Text className={styles.textMarginMP} fw={700} ta="center">MP</Text>
-                <Text className={styles.textMargin} fw={700} ta="center">PTS</Text>
+                <Text style={{ marginLeft: "2%"}} fw={500} ta="center">TEAM</Text>
+                <Text style={{ marginLeft: "52%"}} fw={500} ta="center">MP</Text>
+                <Text fw={500} ta="center">PTS</Text>
             </Group>
 
             <SimpleGrid cols={1} spacing="xs" verticalSpacing="xs"
                         style={{
-                            marginLeft: "3%",
+                            paddingLeft: "3%",
                         }}
             >
                 {rowsTeams}
             </SimpleGrid>
-
+            <Button className={styles.textMarginMP} variant="filled" color="orange" radius="compact-md" onClick={()=>navigate('/')}>Back</Button>
         </>
     );
 }
