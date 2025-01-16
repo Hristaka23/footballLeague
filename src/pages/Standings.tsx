@@ -38,18 +38,29 @@ function Standings() {
     const rowsTeams = sortedTeams.map((team, index) => {
         return (
             <>
-                <Group>
+                <Group gap="xs" style={{width:'max-content'}}>
                     <Text size="md" fw={700}> {index + 1}.</Text>
                     <Image src={club1} width={30} height={30} radius="50%"></Image>
                     <Text size="lg" fw={700}> {team.name}</Text>
 
-                    <Text fw={700} ta="center">{team.games_played}</Text>
-                    <Text fw={700} ta="center">{team.points}</Text>
+
                 </Group>
 
             </>
         );
     });
+
+    const rowPoints = sortedTeams.map((team,) => {
+        return (
+            <>
+                <Group gap="xl" style={{width:'max-content'}}>
+                    <Text fw={700} ta="center">{team.games_played}</Text>
+                    <Text fw={700} ta="center">{team.points}</Text>
+                </Group>
+            </>
+        );
+    });
+
     return (
         <>
             <Header/>
@@ -57,25 +68,31 @@ function Standings() {
                 justify="flex-start"
                 align="center"
                 style={{
-                    paddingLeft: "3%",
+                    paddingLeft: "2%",
                     paddingTop: "3%",
-            }}
+                }}
             >
                 <Text fw={700} ta="center">#</Text>
 
-                <Text style={{ marginLeft: "2%"}} fw={500} ta="center">TEAM</Text>
-                <Text style={{ marginLeft: "52%"}} fw={500} ta="center">MP</Text>
+                <Text style={{marginLeft: "2%"}} fw={500} ta="center">TEAM</Text>
+                <Text style={{marginLeft: "52%"}} fw={500} ta="center">MP</Text>
                 <Text fw={500} ta="center">PTS</Text>
             </Group>
 
-            <SimpleGrid cols={1} spacing="xs" verticalSpacing="xs"
-                        style={{
-                            paddingLeft: "3%",
-                        }}
-            >
-                {rowsTeams}
+            <SimpleGrid cols={2} spacing="xs">
+                <SimpleGrid cols={1} spacing="xs" verticalSpacing="xs"
+                            style={{
+                                paddingLeft: "3%",
+                            }}
+                >
+                    {rowsTeams}
+                </SimpleGrid>
+                <SimpleGrid spacing="xs" style={{width:'max-content',marginLeft: "55%"}} >
+                    {rowPoints}
+                </SimpleGrid>
             </SimpleGrid>
-            <Button className={styles.textMarginMP} variant="filled" color="orange" radius="compact-md" onClick={()=>navigate('/')}>Back</Button>
+            <Button className={styles.textMarginMP} variant="filled" color="orange" radius="compact-md"
+                    onClick={() => navigate('/')}>Back</Button>
         </>
     );
 }
