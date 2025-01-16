@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, Group, Text, Image } from "@mantine/core";
-import logo from "../assets/images/uefa.png";
+import logo from "../assets/images/logo.jpg";
 import styles from "../assets/css/Header.module.css";
 function Header() {
   return (
@@ -17,8 +17,8 @@ function Header() {
         className={styles.header}
       >
         <Group className={styles.group}>
-          <Flex w={60}>
-            <Image src={logo} pl="xs" alt="Logo" radius="xs" />
+          <Flex w={60} pl={10}>
+            <Image src={logo}  alt="Logo" radius="lg" />
           </Flex>
 
           <Text size="xl" color="white">
