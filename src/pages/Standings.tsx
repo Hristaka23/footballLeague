@@ -79,7 +79,7 @@ function Standings() {
                 <Text fw={500} ta="center">PTS</Text>
             </Group>
 
-            <SimpleGrid cols={2} spacing="xs">
+            <Group >
                 <SimpleGrid cols={1} spacing="xs" verticalSpacing="xs"
                             style={{
                                 paddingLeft: "3%",
@@ -87,10 +87,10 @@ function Standings() {
                 >
                     {rowsTeams}
                 </SimpleGrid>
-                <SimpleGrid spacing="xs" style={{width:'max-content',marginLeft: "55%"}} >
+                <SimpleGrid spacing="xs" verticalSpacing="md" style={{width:'max-content', marginLeft: '28%'}} >
                     {rowPoints}
                 </SimpleGrid>
-            </SimpleGrid>
+            </Group>
             <Button className={styles.textMarginMP} variant="filled" color="orange" radius="compact-md"
                     onClick={() => navigate('/')}>Back</Button>
         </>
