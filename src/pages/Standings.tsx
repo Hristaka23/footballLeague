@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 import {useNavigate} from 'react-router-dom';
 
-import club1 from "../assets/images/club1.png";
+const baseUrl = "src/assets/images/";
 import supabase from "../utils/supabase";
 import styles from "../assets/css/Standings.module.css";
 import {Teams} from "../types";
@@ -43,20 +43,19 @@ function Standings() {
             <>
                 <Group gap="xs" style={{width:'max-content'}}>
                     <Text size="md" fw={700}> {index + 1}.</Text>
-                    <Image src={club1} width={30} height={30} radius="50%"></Image>
+                    <Image src={`${baseUrl}${team.img}`} width={30} height={30} radius="50%"></Image>
                     <Text size="lg" fw={700}> {team.name}</Text>
                 </Group>
 
             </>
         );
     });
-
     const rowsTeamsB = groupBTeams.map((team, index) => {
         return (
             <>
                 <Group gap="xs" style={{width:'max-content'}}>
                     <Text size="md" fw={700}> {index + 1}.</Text>
-                    <Image src={club1} width={30} height={30} radius="50%"></Image>
+                    <Image src={`${baseUrl}${team.img}`} width={30} height={30} radius="50%"></Image>
                     <Text size="lg" fw={700}> {team.name}</Text>
                 </Group>
 

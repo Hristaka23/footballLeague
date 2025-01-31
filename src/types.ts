@@ -10,6 +10,7 @@ export type Teams = {
     losses: number;
     goal_difference: number;
     group: string;
+    img: string;
   };
   export type Schedule ={
     id_game: number;
