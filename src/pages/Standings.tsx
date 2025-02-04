@@ -9,7 +9,7 @@ import {
 } from "@mantine/core";
 import {useNavigate} from 'react-router-dom';
 
-const baseUrl = "src/assets/images/";
+const baseUrl = "/imges/";
 import supabase from "../utils/supabase";
 import styles from "../assets/css/Standings.module.css";
 import {Teams} from "../types";
