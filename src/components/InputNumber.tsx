@@ -1,9 +1,14 @@
 import { NumberInput } from '@mantine/core';
 import { UseFormReturnType } from '@mantine/form';
-
+interface FormValues {
+    id_game: string;
+    score1: number;
+    score2: number;
+    status: string;
+}
     interface Props {
         text: string;
-        form: UseFormReturnType<T>;
+        form: UseFormReturnType<FormValues>;
         number: number;
     }
 function InputNumber({text, form,number}: Props) {

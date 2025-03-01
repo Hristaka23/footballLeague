@@ -1,8 +1,13 @@
 import {NativeSelect} from '@mantine/core';
 import {UseFormReturnType} from "@mantine/form";
-
+interface FormValues {
+    id_game: string;
+    score1: number;
+    score2: number;
+    status: string;
+}
 interface Props {
-    form: UseFormReturnType<T>;
+    form: UseFormReturnType<FormValues>;
 
 }
 function Picker({form}:Props) {
