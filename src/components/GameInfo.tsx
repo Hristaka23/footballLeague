@@ -17,8 +17,6 @@ interface Props {
 }
 
 function GameInfo({schedules}: Props) {
-    // const [teams, setTeams] = useState<Teams[]>([]);
-    // const [schedules, setSchedules] = useState<Schedule[]>([]);
 
 
 
@@ -44,7 +42,7 @@ function GameInfo({schedules}: Props) {
 
                 </Table.Td>
                 <Table.Td>
-                    {schedule.status !== "Scheduled" ? (
+                    {schedule.status == "Finished" ? (
                         <SimpleGrid>
                             <Group justify="flex-end">
                                 <Text fw={700} ta="center">{schedule.team1_score}</Text>
@@ -53,10 +51,17 @@ function GameInfo({schedules}: Props) {
                                 <Text fw={700} ta="center">{schedule.team2_score}</Text>
                             </Group>
                         </SimpleGrid>
-                    ) : (
+                    ) : schedule.status == "Scheduled" ?  (
                         <SimpleGrid>
                             <Group justify="flex-end">
                                 <Text fw={700} ta="center">{schedule.time}</Text>
+                            </Group>
+
+                        </SimpleGrid>
+                    ):(
+                        <SimpleGrid>
+                            <Group justify="flex-end">
+                                <Text fw={700} ta="center">Live</Text>
                             </Group>
 
                         </SimpleGrid>
